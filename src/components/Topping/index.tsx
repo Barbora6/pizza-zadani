@@ -1,13 +1,13 @@
-import React from 'react';
-import Check from '../Check';
-import type {ITopping} from '../../models/Topping';
-import './style.css';
+import React from "react";
+import Check from "../Check";
+import type { ITopping } from "../../models/Topping";
+import "./style.css";
 
 interface IToppingProps {
   topping: ITopping;
 }
 
-const Topping IToppingProps = ({ topping }: IToppingProps) => {
+const Topping = ({ topping }: IToppingProps) => {
   return (
     <div className="topping">
       <Check />
