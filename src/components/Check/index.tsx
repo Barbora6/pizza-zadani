@@ -6,12 +6,8 @@ interface ICheckProps {
 }
 
 const Check = ({ checked, onChange }: ICheckProps) => {
-  const handleClick = () => {
-    onChange();
-  };
-
   return (
-    <button className="check" onClick={handleClick}>
+    <button className="check" onClick={onChange}>
       {checked ? "✓" : ""}
     </button>
   );

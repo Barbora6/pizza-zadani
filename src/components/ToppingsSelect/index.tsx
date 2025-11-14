@@ -1,12 +1,22 @@
-import type {ITopping} from "../../models/Topping";
+import { useState } from "react";
+import type { ITopping } from "../../models/Topping";
 import Topping from "../Topping";
-import './style.css';
+import "./style.css";
 
 interface IToppingsSelectProps {
-  toppings: ITopping[]
+  toppings: ITopping[];
 }
 
 const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
+  const [selectedToppings, setSelectedToppings] =
+    useState<ITopping[]>(toppings);
+
+  const handleToggle = (name: string) => {
+    setSelectedToppings((even) =>
+      even.map((t) => (t.name === name ? { ...t, selected: !t.selected } : t))
+    );
+  };
+
   return (
     <>
       <p>Choose as many toppings as you want</p>
@@ -14,7 +24,11 @@ const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
 
       <div className="toppings">
         {toppings.map((topping) => (
-          <Topping topping={topping} key={topping.name} />
+          <Topping
+            topping={topping}
+            key={topping.name}
+            onToggle={handleToggle}
+          />
         ))}
       </div>
     </>
