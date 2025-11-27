@@ -8,11 +8,10 @@ interface IToppingsSelectProps {
 }
 
 const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
-  const [selectedToppings, setSelectedToppings] =
-    useState<ITopping[]>(toppings);
+  const [pizzaToppings, setPizzaToppings] = useState<ITopping[]>(toppings);
 
   const handleToggle = (name: string) => {
-    setSelectedToppings((even) =>
+    setPizzaToppings((even) =>
       even.map((t) => (t.name === name ? { ...t, selected: !t.selected } : t))
     );
   };
@@ -23,11 +22,11 @@ const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
       <p>Selected toppings: 0, total price: 0 Euro</p>
 
       <div className="toppings">
-        {toppings.map((topping) => (
+        {pizzaToppings.map((topping) => (
           <Topping
             topping={topping}
             key={topping.name}
-            onToggle={handleToggle}
+            onToppingChange={handleToggle}
           />
         ))}
       </div>

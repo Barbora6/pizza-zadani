@@ -5,20 +5,17 @@ import "./style.css";
 
 interface IToppingProps {
   topping: ITopping;
-  onToggle: (name: string) => void;
+  onToppingChange: (name: string) => void;
 }
 
-const Topping = ({ topping, onToggle }: IToppingProps) => {
-  // const [checked, setChecked] = useState(false);
-
+const Topping = ({ topping, onToppingChange }: IToppingProps) => {
   const handleChange = () => {
-    // setChecked(!checked);
-    onToggle(topping.name);
+    onToppingChange(topping.name);
   };
 
   return (
     <div className="topping">
-      <Check checked={topping.selected} onChange={handleChange} />
+      <Check checked={topping.selected} onCheck={handleChange} />
       <span className="topping__content">
         {topping.name}: {topping.price} €
       </span>
