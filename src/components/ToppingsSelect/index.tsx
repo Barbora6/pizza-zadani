@@ -21,10 +21,21 @@ const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
     setPizzaToppings(newToppings);
   };
 
+  const totalPrice = pizzaToppings.reduce((total, topping) => {
+    return topping.selected ? total + topping.price : total;
+  }, 0);
+
+  const countSelected = pizzaToppings.reduce((count, topping) => {
+    return topping.selected ? +1 : count;
+  }, 0);
+
   return (
     <>
       <p>Choose as many toppings as you want</p>
-      <p>Selected toppings: 0, total price: 0 Euro</p>
+      <p>
+        Selected toppings: {countSelected}, total price: {totalPrice.toFixed(2)}{" "}
+        Euro
+      </p>
 
       <div className="toppings">
         {pizzaToppings.map((topping) => (
