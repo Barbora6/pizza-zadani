@@ -1,16 +1,15 @@
 import Check from "../Check";
 import type { ITopping } from "../../models/Topping";
 import "./style.css";
-// import { useState } from "react";
 
 interface IToppingProps {
   topping: ITopping;
-  onToppingChange: (name: string) => void;
+  onToppingChange: (name: string, selected: boolean) => void;
 }
 
 const Topping = ({ topping, onToppingChange }: IToppingProps) => {
-  const handleChange = () => {
-    onToppingChange(topping.name);
+  const handleChange = (checked: boolean) => {
+    onToppingChange(topping.name, checked);
   };
 
   return (

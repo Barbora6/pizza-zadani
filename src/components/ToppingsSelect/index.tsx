@@ -10,10 +10,15 @@ interface IToppingsSelectProps {
 const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
   const [pizzaToppings, setPizzaToppings] = useState<ITopping[]>(toppings);
 
-  const handleToggle = (name: string) => {
-    setPizzaToppings((even) =>
-      even.map((t) => (t.name === name ? { ...t, selected: !t.selected } : t))
-    );
+  const handleToppingChange = (name: string, selected: boolean) => {
+    const newToppings = [...pizzaToppings];
+    const topping = newToppings.find((top) => top.name === name);
+    if (topping) {
+      topping.selected = selected;
+    } else {
+      console.log("Ingredience neexistuje");
+    }
+    setPizzaToppings(newToppings);
   };
 
   return (
@@ -26,7 +31,7 @@ const ToppingsSelect = ({ toppings }: IToppingsSelectProps) => {
           <Topping
             topping={topping}
             key={topping.name}
-            onToppingChange={handleToggle}
+            onToppingChange={handleToppingChange}
           />
         ))}
       </div>

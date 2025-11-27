@@ -2,12 +2,12 @@ import "./style.css";
 
 interface ICheckProps {
   checked: boolean;
-  onCheck: () => void;
+  onCheck: (checked: boolean) => void;
 }
 
 const Check = ({ checked, onCheck }: ICheckProps) => {
   return (
-    <button className="check" onClick={onCheck}>
+    <button className="check" onClick={() => onCheck(!checked)}>
       {checked ? "✓" : ""}
     </button>
   );
